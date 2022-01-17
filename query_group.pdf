@@ -14,13 +14,12 @@ GROUP BY office_address;
 
 3)
 
-SELECT COUNT(vote) 
-FROM `exam_student` 
-GROUP BY exam_id;
-
+SELECT AVG('vote') AS 'total',
+FROM 'exam_student'
+GROUP BY 'exam_id';
 
 4)
 
-SELECT COUNT(id)
-FROM `departments` 
-GROUP BY head_of_department;
+SELECT COUNT(id) AS 'numero_corsi_laurea', 'department_id'
+FROM `degrees` 
+GROUP BY 'department_id';

@@ -1,31 +1,33 @@
 1)
 
-SELECT * 
+SELECT `students`.*, ´degrees´.´name´ 
 FROM `students` 
 INNER JOIN ´degrees´ ON ´students´.´degree_id´ = ´degrees´.´id´
 WHERE ´degrees´.´name´ = "Corso di Laurea in Economia";
 
 2)
 
-SELECT *
-FROM `departments` 
-INNER JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id`
-INNER JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
-WHERE `departments`.`name` = "Dipartimento di Neuroscienze";
+SELECT `degrees`.*, `departments`.`name`
+FROM `degrees` 
+INNER JOIN `departments` ON `degrees`.`department_id` = `departments`.`department_id`
+WHERE `departments`.`name` = "Dipartimento di Neuroscienze"
 
 
 3)
 
 SELECT * 
 FROM `courses` 
-INNER JOIN `teachers` ON `courses`.`id` = `courses`.`teacher_id`
-WHERE `teachers`.`name` = 'Fulvio Amato';
+INNER JOIN `course_teacher` ON `courses`.`id` = `courses_teacher`.`courses_id`
+INNER JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
+WHERE `teachers`.`name` = 'Fulvio'
+AND `teachers`.`surname` = 'Amato';
 
 
 4)
 
-SELECT * 
+SELECT `students`. `surname`,  `students`.`name`, `degrees`.`id`, `departments`.`name` 
 FROM `students` 
-INNER JOIN `degrees` ON `students`.`id` = `students`.`degree_id`
-INNER JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
-ORDER BY `surname` ASC;
+INNER JOIN `degrees` ON `students`.`id` = `degrees`.`id`
+INNER JOIN `departments` ON `departments`.`id` = `degrees`.`department_id`
+ORDER BY `students`.`surname`, `students`. `name` ASC;
+
